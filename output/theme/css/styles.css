@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+
+@font-face {
+	font-family: MonacoBI;
+	src: url(../fonts/MonacoB-Bold-Italic.otf);
+}
+
+body {
+	font-family: "Code New Roman", "Roboto Mono";
+	justify-content: center;
+}
+
+.highlight pre {
+	font-family: MonacoBI, monospace;
+	font-size: 0.9em;
+}
+
+blockquote {
+	font-size: 1em;
+	font-style: italic;
+}
