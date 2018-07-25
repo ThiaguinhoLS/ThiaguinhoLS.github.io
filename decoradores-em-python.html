@@ -56,42 +56,87 @@
     </div>
 
     <h1 class="post-title">Decoradores em Python</h1>
-    <h2>Funções</h2>
-<p>Pode parecer meio idiota da minha parte começar a falar de funções, mas se não entendermos como as mesmas funcionam e interagem entre si, não poderemos tirar o máximo dos decoradores. Que tal um pouco de código para nos animarmos?</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <h2>O que são decoradores?</h2>
+<p>Um <em>decorador</em> nada mais é do que uma função/método ou qualquer objeto <em>Callable</em> que recebe como argumento um objeto que também seja um <em>Callable</em> acrescentando ao mesmo alguma funcionalidade, fazendo alguma verificação, ou qualquer coisa que você ache que deva fazer antes de realmente chamar a função em si. Vamos ver um pouco de código.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
 </pre></div>
 
 
-<p>Sei que é uma função digamos "fácil" de se entender mas começaremos com ela e evoluiremos ao longo deste artigo, você tem minha palavra. O que essa função faz é receber dois valores e retornar a soma dos mesmos, até aí nada muito difícil de assimilarmos, mas o que temos e devemos entender é que não especifico em nenhum momento que tipo de valores essa função pode ou deverá receber podendo ser <em>inteiro</em>, <em>float</em>, <em>string</em>, <em>list</em>, <em>tuple</em>, ou seja, essa função não está nem aí para de que tipo serão esses valores mas sim no que ela deve fazer com eles, que no caso seria soma-lós. Você já deve ter ouvido algum programador falando <em><strong>"Tudo em Python é objeto"</strong></em>, mas o que seria um objeto? De acordo com o <em><a href="https://pt.wikipedia.org/wiki/Objeto_(ci%C3%AAncia_da_computa%C3%A7%C3%A3o)">wikipédia</a></em>:</p>
-<blockquote>
-<p>Em ciência da computação, objeto é uma referência a um local da memória que 
-possui um valor. Um objeto pode ser uma variável, função, ou estrutura de 
-dados. Com a introdução da programação orientada a objetos, a palavra objeto 
-refere-se a uma instância de uma classe.
-Em programação orientada a objetos, um objeto passa a existir a partir de um 
-"molde" (classe); a classe define o comportamento do objeto, usando 
-atributos (propriedades) e métodos (ações). </p>
-</blockquote>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
+<p>Digamos que queremos implementar um sistema de log nessas funções faríamos assim:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Função add chamada&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Função sub chamada&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+</pre></div>
+
+
+<p>Acrescentamos log somente a nível de depuração nas duas funções até aí nada de mais mas e se criamos as funções <em>div</em>, <em>mul</em>, ou outras? Teríamos duplicação de código em todas elas, então qual seria a melhor abordagem aqui? Se você respondeu decoradores acertou em cheio. Com o uso de decoradores podemos extrair a funcionalidade comum e deixá-la a cargo do decorador, enquanto a parte variante inplementamos na própria função.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
-        <span class="n">nonlocal</span> <span class="n">initialize</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">initialize</span><span class="p">:</span>
-            <span class="n">func</span><span class="p">()</span>
-            <span class="n">initialize</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">initialize</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Função {} chamada&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@decorator</span>
-<span class="k">def</span> <span class="nf">once_initialize</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Função inicializada&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="nd">@decorator</span>
+<span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
 </pre></div>
+
+
+<p>Agora não importa quantas funções eu queira adicionar a funcionalidade do log, somente preciso utilizar meu decorador e pronto, a mesma agora possui essa funcionalidade.</p>
+<p>Vamos fazer algumas verificações nesse código.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">add</span>
+<span class="o">&lt;</span><span class="n">function</span> <span class="n">decorator</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">wrapper</span> <span class="n">at</span> <span class="mh">0x7f259e64d9d8</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;wrapper&#39;</span>
+</pre></div>
+
+
+<p>Pelo que podemos ver a função decorada perdeu digamos assim sua <em>"identidade"</em>, mas se olharmos novamente nosso código poderemos rapidamente descobrir o motivo não é mesmo? O motivo é que quando decoramos a função estamos chamando o decorador e passando como argumento essa função da seguinte forma:</p>
+<div class="highlight"><pre><span></span><span class="n">add</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">add</span><span class="p">)</span> <span class="c1"># O mesmo que utilizar @decorator acima da definição da função</span>
+</pre></div>
+
+
+<p>A função <em>decorator</em> está sendo executada com o parâmetro <em>func</em> sendo a função <em>add</em>, depois o decorador define um função aninhada(interna) chamada <em>wrapper</em>, e retorna a mesma, ou seja, a função retornada não é a mesma que foi decorada mas sim um invólucro. Um meio de contornar a perda desses atributos, caso você necessite deles para realizar introspecção, ou qualquer que seja o motivo é utilizar a função <em><a href="https://docs.python.org/3/library/functools.html#functools.wraps" target="_blank">wraps</a></em> que acreditem ou não é um decorador.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+
+
+<p>Agora se fizermos:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">add</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span>
+<span class="o">&lt;</span><span class="n">function</span> <span class="n">add</span> <span class="n">at</span> <span class="mh">0x7f125611dae8</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;add&#39;</span>
+</pre></div>
+
+
+<p>Espero ter ajudado nem mesmo que seja um pouco no seu entendimento sobre decoradores, qualquer dúvida deixe nos comentários que tentarei responde-lá da melhor forma possível.</p>
 <div id="comments">
     <div id="disqus_thread"></div>
 <script>
