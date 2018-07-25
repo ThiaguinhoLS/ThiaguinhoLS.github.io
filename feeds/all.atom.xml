@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Diário de um programador</title><link href="https://thiaguinhols.github.io/" rel="alternate"></link><link href="https://thiaguinhols.github.io/feeds/all.atom.xml" rel="self"></link><id>https://thiaguinhols.github.io/</id><updated>2018-07-24T01:06:00-03:00</updated><entry><title>Decoradores em Python</title><link href="https://thiaguinhols.github.io/decoradores-em-python.html" rel="alternate"></link><published>2018-07-24T01:06:00-03:00</published><updated>2018-07-24T01:06:00-03:00</updated><author><name>ThiaguinhoLS</name></author><id>tag:thiaguinhols.github.io,2018-07-24:/decoradores-em-python.html</id><summary type="html">&lt;h2&gt;Funções&lt;/h2&gt;
+&lt;p&gt;Pode parecer meio idiota da minha parte começar a falar de funções, mas se não entendermos como as mesmas funcionam e interagem entre si, não poderemos tirar o máximo dos decoradores. Que tal um pouco de código para nos animarmos?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python3&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Funções&lt;/h2&gt;
+&lt;p&gt;Pode parecer meio idiota da minha parte começar a falar de funções, mas se não entendermos como as mesmas funcionam e interagem entre si, não poderemos tirar o máximo dos decoradores. Que tal um pouco de código para nos animarmos?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python3&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sei que é uma função digamos "fácil" de se entender mas começaremos com ela e evoluiremos ao longo deste artigo, você tem minha palavra. O que essa função faz é receber dois valores e retornar a soma dos mesmos, até aí nada muito difícil de assimilarmos, mas o que temos e devemos entender é que não especifico em nenhum momento que tipo de valores essa função pode ou deverá receber podendo ser &lt;em&gt;inteiro&lt;/em&gt;, &lt;em&gt;float&lt;/em&gt;, &lt;em&gt;string&lt;/em&gt;, &lt;em&gt;list&lt;/em&gt;, &lt;em&gt;tuple&lt;/em&gt;, ou seja, essa função não está nem aí para de que tipo serão esses valores mas sim no que ela deve fazer com eles, que no caso seria soma-lós. Você já deve ter ouvido algum programador falando &lt;em&gt;&lt;strong&gt;"Tudo em Python é objeto"&lt;/strong&gt;&lt;/em&gt;, mas o que seria um objeto? De acordo com o &lt;em&gt;&lt;a href="https://pt.wikipedia.org/wiki/Objeto_(ci%C3%AAncia_da_computa%C3%A7%C3%A3o)"&gt;wikipédia&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Em ciência da computação, objeto é uma referência a um local da memória que 
+possui um valor. Um objeto pode ser uma variável, função, ou estrutura de 
+dados. Com a introdução da programação orientada a objetos, a palavra objeto 
+refere-se a uma instância de uma classe.
+Em programação orientada a objetos, um objeto passa a existir a partir de um 
+"molde" (classe); a classe define o comportamento do objeto, usando 
+atributos (propriedades) e métodos (ações). &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python3&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrapper&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;nonlocal&lt;/span&gt; &lt;span class="n"&gt;initialize&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;initialize&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="n"&gt;initialize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+    &lt;span class="n"&gt;initialize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrapper&lt;/span&gt;
+
+&lt;span class="nd"&gt;@decorator&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;once_initialize&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Função inicializada&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category></entry></feed>
