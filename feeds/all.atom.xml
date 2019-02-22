@@ -7,18 +7,15 @@ existem situações onde o mesmo deve e não ser usado.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   {{ message  }}
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-````
 
-
-```javascript
-
-const app = new Vue({
-  el: &amp;#39;#app&amp;#39;,
-  data: {
-    message: &amp;#39;Hello World with Vue.js&amp;#39;
-  }
-});
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Vue&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World with Vue.js&amp;#39;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="Vue"></category></entry><entry><title>Decoradores em Python</title><link href="https://thiaguinhols.github.io/decoradores-em-python.html" rel="alternate"></link><published>2018-07-24T01:06:00-03:00</published><updated>2018-07-24T01:06:00-03:00</updated><author><name>ThiaguinhoLS</name></author><id>tag:thiaguinhols.github.io,2018-07-24:decoradores-em-python.html</id><summary type="html">&lt;h2&gt;O que são decoradores?&lt;/h2&gt;
 &lt;p&gt;Um &lt;em&gt;decorador&lt;/em&gt; nada mais é do que uma função/método ou qualquer objeto &lt;em&gt;Callable&lt;/em&gt; que recebe como argumento um objeto que também seja um &lt;em&gt;Callable&lt;/em&gt; acrescentando ao mesmo alguma funcionalidade, fazendo alguma verificação, ou qualquer coisa que você ache que deva fazer antes de realmente chamar a função em si. Vamos ver um pouco de código.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
