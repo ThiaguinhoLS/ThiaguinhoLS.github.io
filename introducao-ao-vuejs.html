@@ -18,6 +18,7 @@
 
         <meta charset="utf-8" />
         <link href="https://thiaguinhols.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Diário de um programador Full Atom Feed" />
+        <link href="https://thiaguinhols.github.io/feeds/framework.atom.xml" type="application/atom+xml" rel="alternate" title="Diário de um programador Categories Atom Feed" />
 
         <meta name="HandheldFriendly" content="True" />
         <meta name="MobileOptimized" content="320" />
@@ -28,6 +29,10 @@
                 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
             <![endif]--> 
  
+
+<link rel="stylesheet" type="text/css" href="https://thiaguinhols.github.io/theme/css/rrssb.css">
+<meta property="og:title" content="Introdução ao Vue.js" />
+<meta property="og:type" content="Framework" />
     </head>
     <body>
         <header id="header">
@@ -42,32 +47,58 @@
 
         </header>
         <main id="content">
-<section id="content">
-<h2>Publicações</h2>
-
-
-    <section>
-    <h3 class="post-title">
-    <a href="https://thiaguinhols.github.io/introducao-ao-vuejs.html">Introdução ao Vue.js</a>
-    <span class="separator"> &middot; </span>Fev 22 2019
+<article class="post-article">
+    <div class="post-stamp">
+    fevereiro 22 2019
     <span class="taglist">
-            <a href="https://thiaguinhols.github.io/tag/vue.html">Vue</a>
+            <a href="https://thiaguinhols.github.io/tag/vue.html"> &middot; Vue</a>
     </span>
-    </h3>
-    </section>
+    </div>
+
+    <h1 class="post-title">Introdução ao Vue.js</h1>
+    <h2>O que é Vue.js</h2>
+<p>O Vue.js é um framework progressivo desenvolvido para auxiliar o desenvolvedor
+na criação de interfaces de usuário, isso mesmo Vue.js é um framework logo
+existem situações onde o mesmo deve e não ser usado.</p>
+<p>Vamos a um exemplo básico, mas que demonstra um pouco do poder desse framework:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
+  {{ message  }}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+````
 
 
-    <section>
-    <h3 class="post-title">
-    <a href="https://thiaguinhols.github.io/decoradores-em-python.html">Decoradores em Python</a>
-    <span class="separator"> &middot; </span>Jul 24 2018
-    <span class="taglist">
-            <a href="https://thiaguinhols.github.io/tag/python.html">python</a>
-    </span>
-    </h3>
-    </section>
+```javascript
 
-</section><!-- /#content -->
+const app = new Vue({
+  el: &#39;#app&#39;,
+  data: {
+    message: &#39;Hello World with Vue.js&#39;
+  }
+});
+</pre></div>
+<div id="comments">
+    <div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://thiaguinhols.github.io/introducao-ao-vuejs.html'; 
+this.page.identifier = 'introducao-ao-vuejs'; 
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//diariodeumprogramador.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+</article> 
+
         </main>
 
         <footer id="footer">

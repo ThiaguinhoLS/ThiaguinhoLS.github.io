@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Diário de um programador</title><link href="https://thiaguinhols.github.io/" rel="alternate"></link><link href="https://thiaguinhols.github.io/feeds/all.atom.xml" rel="self"></link><id>https://thiaguinhols.github.io/</id><updated>2018-07-24T01:06:00-03:00</updated><entry><title>Decoradores em Python</title><link href="https://thiaguinhols.github.io/decoradores-em-python.html" rel="alternate"></link><published>2018-07-24T01:06:00-03:00</published><updated>2018-07-24T01:06:00-03:00</updated><author><name>ThiaguinhoLS</name></author><id>tag:thiaguinhols.github.io,2018-07-24:/decoradores-em-python.html</id><summary type="html">&lt;h2&gt;O que são decoradores?&lt;/h2&gt;
-&lt;p&gt;Um &lt;em&gt;decorador&lt;/em&gt; nada mais é do que uma função/método ou qualquer objeto &lt;em&gt;Callable&lt;/em&gt; que recebe como argumento um objeto que também seja um &lt;em&gt;Callable&lt;/em&gt; acrescentando ao mesmo alguma funcionalidade, fazendo alguma verificação, ou qualquer coisa que você ache que deva fazer antes de realmente chamar …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;O que são decoradores?&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Diário de um programador</title><link href="https://thiaguinhols.github.io/" rel="alternate"></link><link href="https://thiaguinhols.github.io/feeds/all.atom.xml" rel="self"></link><id>https://thiaguinhols.github.io/</id><updated>2019-02-22T15:12:00-03:00</updated><entry><title>Introdução ao Vue.js</title><link href="https://thiaguinhols.github.io/introducao-ao-vuejs.html" rel="alternate"></link><published>2019-02-22T15:12:00-03:00</published><updated>2019-02-22T15:12:00-03:00</updated><author><name>ThiaguinhoLS</name></author><id>tag:thiaguinhols.github.io,2019-02-22:introducao-ao-vuejs.html</id><summary type="html">&lt;h2&gt;O que é Vue.js&lt;/h2&gt;
+&lt;p&gt;O Vue.js é um framework progressivo desenvolvido para auxiliar o desenvolvedor
+na criação de interfaces de usuário, isso mesmo Vue.js é um framework logo
+existem situações onde o mesmo deve e não ser usado.&lt;/p&gt;
+&lt;p&gt;Vamos a um exemplo básico, mas que demonstra um pouco do poder desse framework:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  {{ message  }}
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+````
+
+
+```javascript
+
+const app = new Vue({
+  el: &amp;#39;#app&amp;#39;,
+  data: {
+    message: &amp;#39;Hello World with Vue.js&amp;#39;
+  }
+});
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Vue"></category></entry><entry><title>Decoradores em Python</title><link href="https://thiaguinhols.github.io/decoradores-em-python.html" rel="alternate"></link><published>2018-07-24T01:06:00-03:00</published><updated>2018-07-24T01:06:00-03:00</updated><author><name>ThiaguinhoLS</name></author><id>tag:thiaguinhols.github.io,2018-07-24:decoradores-em-python.html</id><summary type="html">&lt;h2&gt;O que são decoradores?&lt;/h2&gt;
 &lt;p&gt;Um &lt;em&gt;decorador&lt;/em&gt; nada mais é do que uma função/método ou qualquer objeto &lt;em&gt;Callable&lt;/em&gt; que recebe como argumento um objeto que também seja um &lt;em&gt;Callable&lt;/em&gt; acrescentando ao mesmo alguma funcionalidade, fazendo alguma verificação, ou qualquer coisa que você ache que deva fazer antes de realmente chamar a função em si. Vamos ver um pouco de código.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
@@ -80,4 +99,4 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Espero ter ajudado nem mesmo que seja um pouco no seu entendimento sobre decoradores, qualquer dúvida deixe nos comentários que tentarei responde-lá da melhor forma possível.&lt;/p&gt;</content><category term="python"></category></entry></feed>
+&lt;p&gt;Espero ter ajudado nem mesmo que seja um pouco no seu entendimento sobre decoradores, qualquer dúvida deixe nos comentários que tentarei responde-lá da melhor forma possível.&lt;/p&gt;</summary><category term="python"></category></entry></feed>
