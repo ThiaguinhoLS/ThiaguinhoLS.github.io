@@ -67,6 +67,8 @@ existem situações onde o mesmo deve e não ser usado.</p>
 </pre></div>
 
 
+<script async src="//jsfiddle.net/thiagoluizs/w0coh8vy/24/embed/js,html,result/dark/"></script>
+
 <div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
   <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
   <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
@@ -85,6 +87,16 @@ existem situações onde o mesmo deve e não ser usado.</p>
 uma propriedade no objeto data do componente(nesse exemplo se trata de um componente root, veremos mais pra
 frente o seu papel no Vue.js), que a torna capaz de ser usada no template desse
 componente(nesse caso a div com id de valor app).</p>
+<p>Outras característica que torna o Vue.js extremamente interessante é a facilidade
+que podemos interligar dados com nosso template, segue um exemplo pra esclarecer
+as coisas:</p>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
 <div id="comments">
     <div id="disqus_thread"></div>
 <script>
