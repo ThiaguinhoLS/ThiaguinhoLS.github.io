@@ -4,7 +4,7 @@
 na criação de interfaces de usuário, isso mesmo Vue.js é um framework logo
 existem situações onde o mesmo deve e não ser usado.&lt;/p&gt;
 &lt;p&gt;Vamos a um exemplo básico, mas que demonstra um pouco do poder desse framework:&lt;/p&gt;
-&lt;script async src="//jsfiddle.net/thiagoluizs/w0coh8vy/25/embed/js,html,result/"&gt;&lt;/script&gt;
+&lt;script async src="//jsfiddle.net/thiagoluizs/w0coh8vy/embed/js,html,result/"&gt;&lt;/script&gt;
 
 &lt;p&gt;Como podem notar é intuitivo o que está acontecendo no nosso código definimos
 uma propriedade no objeto data do componente(nesse exemplo se trata de um componente root, veremos mais pra
